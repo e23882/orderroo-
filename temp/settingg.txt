@@ -1,0 +1,29 @@
+住宿類型
+type
+	homestay
+	hostel
+town
+	Hualien
+	Newurban
+	Xiulin
+	Jian
+	Shoufeng
+	Fenglin
+	Wanrong
+	Guangfu
+	Fengbin
+	Ruisui
+	Yuli
+	Zhuoxi
+	Fuli
+price
+	2000u
+	4000u
+	6000u
+	6000a
+
+Reservation
+	single
+	double
+	suite
+	others
