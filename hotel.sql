@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- 主機: 127.0.0.1
--- 產生時間： 2018-07-11 19:27:00
+-- 產生時間： 2018-07-14 15:46:59
 -- 伺服器版本: 10.1.21-MariaDB
 -- PHP 版本： 5.6.30
 
@@ -19,6 +19,39 @@ SET time_zone = "+00:00";
 --
 -- 資料庫： `hotel`
 --
+
+-- --------------------------------------------------------
+
+--
+-- 資料表結構 `active`
+--
+
+CREATE TABLE `active` (
+  `a_id` int(11) NOT NULL,
+  `name` varchar(150) COLLATE utf8mb4_unicode_520_ci NOT NULL,
+  `start` date NOT NULL,
+  `end` date NOT NULL,
+  `image` mediumtext COLLATE utf8mb4_unicode_520_ci NOT NULL,
+  `detail` varchar(300) COLLATE utf8mb4_unicode_520_ci NOT NULL,
+  `host` varchar(150) COLLATE utf8mb4_unicode_520_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+
+--
+-- 資料表的匯出資料 `active`
+--
+
+INSERT INTO `active` (`a_id`, `name`, `start`, `end`, `image`, `detail`, `host`) VALUES
+(1, '107年花蓮縣義民祭文化活動', '2018-08-01', '2018-08-31', 'act1.jpg', '花蓮「客家義民文化祭」是花東地區客家宗教信仰文化的重要開創，以環保創意重現傳統客家挑擔奉飯、祝禱祈福等儀式，落實環保不殺生的環境教育觀念，並製作大型麵龜供參與信徒領取以保平安，再現客家傳統信仰的熱鬧慶典氛圍。', '花蓮縣政府客家事務處'),
+(2, '2018花蓮奇萊傳說Ⅲ夜之谷', '2018-06-30', '2018-08-12', 'act1.jpg', '花蓮奇萊傳說Ⅲ為花蓮每年暑期知名的戶外展演活動，運用現代科技融合花蓮百大景點、在地原住民人文元素及鯉魚潭的自然山景水色，推出「韻律噴泉秀」、「水舞劇場~夜之谷」及「閃耀鴨鴨夜光秀」等主題活動。呈現出花蓮豐富的山水人文特色。', '花蓮縣政府觀光處'),
+(3, '2018知卡宣綠森林親水公園暑期水上樂園', '2018-07-01', '2018-08-26', 'act2.jpg', '夏季期間提供戲水設施，滿足鄉親及遊客安全戲水需求。', '花蓮縣政府農業處'),
+(4, '2018夏戀嘉年華', '2018-07-07', '2018-07-14', 'act3.jpg', '夏戀嘉年華為花蓮每年夏季知名的音樂季，活動期間除邀請知名歌手團體熱力演唱，會場旁的東大門夜市同時還可以滿足旅客食的需求，遊客可以一邊聆聽藝人演唱，一邊享受美食，體驗花蓮獨有的夏季之旅。', '花蓮縣政府觀光處'),
+(5, '2018年花蓮縣原住民族聯合豐年節', '2018-07-20', '2018-07-22', 'act4.jpg', '2018年聯合豐年節將再度結合樂舞展演，呈現原住民族歌謠、舞蹈與文化祭儀的精髓，活動周邊亦設有原住民特色美食區、手工藝品展售區及各原住民農特產、部落微旅行簡介等，展現花蓮原住民族獨特的文化內涵。', '花蓮縣政府原住民行政處'),
+(6, '2018客庄12大節慶「客鼓鳴心──鼓王爭霸戰」', '2018-07-28', '2018-07-29', 'actCom.jpg', '位於花蓮瑞穗鄉富源社區(又稱拔仔庄)的保安宮，是花蓮地區最早的城隍廟，每年為慶祝城隍聖誕，都會有綿延數里的陣頭，以及震懾人心的鑼鼓陣，以人力合挑大鼓，沿途競技，鑼鼓陣不僅是宗教活動的重心，也是地方民俗藝術之美，一百多年來在拔仔庄歷久不衰。', '花蓮縣政府客家事務處'),
+(7, '花蓮金針花季', '2018-08-04', '2018-09-24', 'act6.jpg', '炎炎夏日是玉里赤科山、富里六十石山金針花盛開的時節，黃澄澄的金針花海在藍天與雲嵐的陪伴下，綿延壯麗的花海，更顯絢麗迷人，遊客們可以悠遊在景色優美、空氣清新的大自然中，欣賞最美麗的金針花海。', '富里鄉農會、玉溪地區農會'),
+(8, '花蓮縣各原住民部落豐年祭', '2018-07-28', '2018-08-26', 'actCom.jpg', '', '花蓮市轄內各部落'),
+(9, '107年瑞穗鄉泛踏嬉泛舟鐵人三項競賽活動', '2018-09-22', '2018-09-22', 'actCom.jpg', '', '瑞穗鄉公所'),
+(10, '太魯閣族感恩祭', '0000-00-00', '0000-00-00', 'actCom.jpg', '', '未定'),
+(11, '2018Mgay Bari太魯閣族部落文化活動', '2018-09-01', '2018-10-31', 'actCom.jpg', '', '秀林鄉各部落');
 
 -- --------------------------------------------------------
 
@@ -2359,6 +2392,33 @@ INSERT INTO `log` (`id`, `user_id`, `town`, `type`, `room_type`, `price_interval
 -- --------------------------------------------------------
 
 --
+-- 資料表結構 `newlog`
+--
+
+CREATE TABLE `newlog` (
+  `l_id` int(11) NOT NULL,
+  `city` varchar(300) COLLATE utf8mb4_unicode_520_ci NOT NULL,
+  `type` varchar(300) COLLATE utf8mb4_unicode_520_ci NOT NULL,
+  `roomType` varchar(300) COLLATE utf8mb4_unicode_520_ci NOT NULL,
+  `price` varchar(300) COLLATE utf8mb4_unicode_520_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+
+--
+-- 資料表的匯出資料 `newlog`
+--
+
+INSERT INTO `newlog` (`l_id`, `city`, `type`, `roomType`, `price`) VALUES
+(1, '新城', '旅館', '雙人房', '4001~6000'),
+(2, '新城', '旅館', '雙人房', '4001~6000'),
+(3, '花蓮', '民宿', '單人房', '0~2000'),
+(4, '花蓮', '民宿', '單人房', '0~2000'),
+(5, '花蓮', '民宿', '單人房', '0~2000'),
+(6, '花蓮', '民宿', '單人房', '0~2000'),
+(7, '花蓮', '民宿', '單人房', '0~2000');
+
+-- --------------------------------------------------------
+
+--
 -- 資料表結構 `password_resets`
 --
 
@@ -2389,11 +2449,22 @@ INSERT INTO `user` (`id`, `account`, `password`, `name`) VALUES
 (7, 'a123456', '123456', '王曉明'),
 (8, 'test', '1234', 'testUser'),
 (9, 'uuu', '1234', '王大鳴'),
-(10, 'uuu', '1234', '王大鳴');
+(10, 'uuu', '1234', '王大鳴'),
+(11, 'aa', 'bb', 'aaaa'),
+(12, 'aa', 'bb', 'aaa'),
+(13, '333', '222', '123'),
+(14, 'vvv', 'ccc', 'a123'),
+(15, '123', '654', '王曉明');
 
 --
 -- 已匯出資料表的索引
 --
+
+--
+-- 資料表索引 `active`
+--
+ALTER TABLE `active`
+  ADD PRIMARY KEY (`a_id`);
 
 --
 -- 資料表索引 `activity`
@@ -2427,6 +2498,12 @@ ALTER TABLE `log`
   ADD PRIMARY KEY (`id`);
 
 --
+-- 資料表索引 `newlog`
+--
+ALTER TABLE `newlog`
+  ADD PRIMARY KEY (`l_id`);
+
+--
 -- 資料表索引 `password_resets`
 --
 ALTER TABLE `password_resets`
@@ -2443,10 +2520,20 @@ ALTER TABLE `user`
 --
 
 --
+-- 使用資料表 AUTO_INCREMENT `active`
+--
+ALTER TABLE `active`
+  MODIFY `a_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+--
+-- 使用資料表 AUTO_INCREMENT `newlog`
+--
+ALTER TABLE `newlog`
+  MODIFY `l_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+--
 -- 使用資料表 AUTO_INCREMENT `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

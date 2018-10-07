@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <head>
-	<meta http-equiv="refresh" content="3;url=index.php">
+	<meta http-equiv="refresh" content="3;url=recommendDefault.php">
 	<link rel="stylesheet" type="text/css" href="css/reset.css"/>
     <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/themes/hot-sneaks/jquery-ui.css" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Gloria+Hallelujah|Knewave|Shadows+Into+Light" rel="stylesheet">
@@ -70,8 +70,8 @@
 				<div class="_19rvy71" style="position:absolute;right:5%;top:2%;">
 					<nav style="padding:13px;">
 						<a class="navstyle" href="index.php" style="font-family:'cwTeXYen', sans-serif;">住宿總覽</a>
-						<a class="navstyle" href="total.php" style="font-family:'cwTeXYen', sans-serif;">推薦住宿</a>
-						<a class="navstyle" href="active.php" style="font-family:'cwTeXYen', sans-serif;">活動資訊</a>
+						<a class="navstyle" href="total.php?p_id=1?p_id=1" style="font-family:'cwTeXYen', sans-serif;">推薦住宿</a>
+						<a class="navstyle" href="active.php" style="font-family:'cwTeXYen', sans-serif;">交通資訊</a>
 						<a class="navstyle" href="login.html" style="font-family:'cwTeXYen', sans-serif;">登入/註冊</a>											
 					</nav>
 				</div>                
@@ -93,7 +93,8 @@
 								$stmt->execute();
 								
 								$conn = null;
-								
+								session_start();
+								$_SESSION['user']=$_POST['name'];
 								echo "註冊成功 ".$_POST['name'];
 									
 								

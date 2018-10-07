@@ -5,7 +5,7 @@
 	<link href="https://fonts.googleapis.com/css?family=Gloria+Hallelujah|Knewave|Shadows+Into+Light" rel="stylesheet">
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<link href="css/bootstrap.css" rel="stylesheet">
-    <title>住宿總覽</title>
+    <title>交通資訊</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 	<style>
 	@import url(https://fonts.googleapis.com/earlyaccess/cwtexyen.css);
@@ -69,55 +69,58 @@
 							Hualien
 						</b>
 				</a>
-				<div class="_19rvy71" style="position:absolute;right:5%;top:2%;">
+				<div class="_19rvy71" style="position:absolute;right:15%;top:2%;">
 					<nav style="padding:13px;">
-						<a class="navstyle" href="total.php" style="font-family:'cwTeXYen', sans-serif;">住宿總覽</a>
-						<a class="navstyle" href="index.php" style="font-family:'cwTeXYen', sans-serif;">推薦住宿</a>
-						<a class="navstyle" href="active.php" style="font-family:'cwTeXYen', sans-serif;">活動資訊</a>
+						<a class="navstyle" href="total.php?p_id=1" style="font-family:'cwTeXYen', sans-serif;">住宿總覽</a>
+						<a class="navstyle" href="recommendDefault.php" style="font-family:'cwTeXYen', sans-serif;">推薦住宿</a>
+						<a class="navstyle" href="active.php" style="font-family:'cwTeXYen', sans-serif;">交通資訊</a>
 						<a class="navstyle" href="Login.html" style="font-family:'cwTeXYen', sans-serif;">登入/註冊</a>											
 					</nav>
-				</div>                
+				</div>         
+				<?php
+					session_start();
+					if($_SESSION['user']!="")
+						echo "<div style='position:absolute;right:5%;top:4%;font-family:微軟正黑體;color:white;'><a href='logout.php'>登出 ".$_SESSION['user']."</a></div>";
+					else
+						 echo "<div style='position:absolute;right:5%;top:4%;font-family:微軟正黑體;color:white;display:none;'><a href='logout.php'>登出 ".$_SESSION['user']."</a></div>";
+				?>						
 			</section>
 		</div>
 		<div style="padding-top:100px;padding-bottom:150px;padding-left:200px;padding-right:200px;font-family:微軟正黑體;">
-			
-				 <table style="background-color:rgba(80%, 90%, 80%, 0.8);">
-					<th style="min-width:250px;height:40px;padding:15px;">活動名稱</th>
-					<th style="min-width:150px;">活動開始日期</th>
-					<th style="min-width:150px;">活動結束日期</th>
-					<th style="min-width:200px;">主辦單位</th>
-					<th style="min-width:150px;">地點</th>
+			<table style="width:100%;">
+				<tr>
+					<td><a href="air.php"><img src="img/air.jpg" style="width:250px;"/></a></td>
+					<td><a href="area.php"><img src="img/areasearch.jpg" style="width:250px;"/></a></td>
+					<td><a href="bike.php"><img src="img/bike.jpg" style="width:250px;"/></a></td>
+				</tr>
+				<tr><td>&nbsp;</td></tr>
+				<tr>
+					<td><a href="bus.php"><img src="img/bus.jpg" style="width:250px;"/></a></td>
+					<td><a href="busc.php"><img src="img/buscurrent.jpg" style="width:250px;"/></a></td>
+					<td><a href="free.php"><img src="img/free.jpg" style="width:250px;"/></a></td>
+				</tr>
+				<tr><td>&nbsp;</td></tr>
+				<tr>
+					<td><a href="shuttle.php"><img src="img/shuttle.jpg" style="width:250px;"/></a></td>
+					<td><a href="taxi.php"><img src="img/taxi.jpg" style="width:250px;"/></a></td>
+					<td><a href="train.php"><img src="img/train.jpg" style="width:250px;"/></a></td>
+				</tr>
+				<tr>
+					<td style="padding:10px;"><a href="https://tour-hualien.hl.gov.tw/topic/suggest"><img src="img/topic1.jpg" style="width:180px;border-radius:50%;border: 6px solid rgb(255, 255, 255);margin-left:27px;"/></a></td>
+					<td style="padding:10px;"><a href="https://tour-hualien.hl.gov.tw/topic/oneday"><img src="img/topic2.jpg" style="width:180px;border-radius:50%;border: 6px solid rgb(255, 255, 255);margin-left:27px;"/></a></td>
+					<td style="padding:10px;"><a href="https://tour-hualien.hl.gov.tw/topic/coupleday"><img src="img/topic3.jpg" style="width:180px;border-radius:50%;border: 6px solid rgb(255, 255, 255);margin-left:25px;"/></a></td>
+				</tr>
+				<tr>
+					<td style="padding:10px;"><a href="https://tour-hualien.hl.gov.tw/topic/bike"><img src="img/topic4.png" style="width:180px;border-radius:50%;border: 6px solid rgb(255, 255, 255);margin-left:27px;"/></a></td>
+					<td style="padding:10px;"><a href="https://tour-hualien.hl.gov.tw/topic/hot%20spring"><img src="img/topic5.jpg" style="width:180px;border-radius:50%;border: 6px solid rgb(255, 255, 255);margin-left:27px;"/></a></td>
+					<td style="padding:10px;"><a href="https://tour-hualien.hl.gov.tw/topic/rafting"><img src="img/topic6.jpg" style="width:180px;border-radius:50%;border: 6px solid rgb(255, 255, 255);margin-left:27px;"/></a></td>
+				</tr>
+				<tr>
+					<td style="padding:10px;"><a href="https://tour-hualien.hl.gov.tw/topic/hike"><img src="img/topic7.jpg" style="width:180px;border-radius:50%;border: 6px solid rgb(255, 255, 255);margin-left:27px;"/></a></td>
+					<td style="padding:10px;"><a href="https://tour-hualien.hl.gov.tw/topic/plan"><img src="img/topic8.jpg" style="width:180px;border-radius:50%;border: 6px solid rgb(255, 255, 255);margin-left:27px;"/></a></td>
 					
-					<?php
-						//呼叫資料庫
-						require_once 'ConnectionFactory.php';
-						try
-						{
-							$conn = connectionfactory::getfactory()->getconnection();
-							
-							$stmt = $conn->prepare('SELECT title, from_date, to_date, location, address FROM activity where to_date < now() order BY RAND() ');
-							$stmt->execute();
-							
-							$result = $stmt->fetchAll(PDO::FETCH_CLASS);
-							$conn = null;						
-							foreach ($result as $value) 
-							{
-								echo "<tr style='height:40px;'>";
-								echo "<td>".$value->title."</td>";
-								echo "<td>".$value->from_date."</td>";
-								echo "<td>".$value->to_date."</td>";
-								echo "<td>".$value->location."</td>";
-								echo "<td>".$value->address."</td>";
-								echo "</tr>";	
-							}
-							
-						}
-						catch (PDOException $e) 
-						{
-							echo "error";
-						}
-					?>
-				</table>
+				</tr>
+			</table>
 		</div>	
 		
     </main>

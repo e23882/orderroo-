@@ -59,7 +59,7 @@
 	</style>
 </head>
 
-<body style="background:#fff url('img/loginback.jpg') center center fixed no-repeat;background-size: cover;　background-repeat:no-repeat;">
+<body style="background:#fff url('img/activeBack.jpg') center center fixed no-repeat;background-size: cover;　background-repeat:no-repeat;">
     <main id="site-content" role="main" tabindex="-1">
 		<div class="_1ta0kyw">
 			<section>           
@@ -69,68 +69,110 @@
 							Hualien
 						</b>
 				</a>
-				<div class="_19rvy71" style="position:absolute;right:5%;top:2%;">
+				<div class="_19rvy71" style="position:absolute;right:15%;top:2%;">
 					<nav style="padding:13px;">
-						<a class="navstyle" href="total.php" style="font-family:'cwTeXYen', sans-serif;">住宿總覽</a>
-						<a class="navstyle" href="index.php" style="font-family:'cwTeXYen', sans-serif;">推薦住宿</a>
-						<a class="navstyle" href="active.php" style="font-family:'cwTeXYen', sans-serif;">活動資訊</a>
+						<a class="navstyle" href="total.php?p_id=1" style="font-family:'cwTeXYen', sans-serif;">住宿總覽</a>
+						<a class="navstyle" href="index.php?p_id=1" style="font-family:'cwTeXYen', sans-serif;">推薦住宿</a>
+						<a class="navstyle" href="active.php" style="font-family:'cwTeXYen', sans-serif;">交通資訊</a>
 						<a class="navstyle" href="Login.html" style="font-family:'cwTeXYen', sans-serif;">登入/註冊</a>											
 					</nav>
-				</div>                
+				</div>  
+				<?php
+					session_start();
+                    if(isset($_SESSION['user'])) 
+						echo "<div style='position:absolute;right:5%;top:4%;font-family:微軟正黑體;color:white;'><a href='logout.php'>登出 ".$_SESSION['user']."</a></div>";
+					else
+						 echo "<div style='position:absolute;right:5%;top:4%;font-family:微軟正黑體;color:white;display:none;'><a href='logout.php'>登出 ".$_SESSION['user']."</a></div>";
+				?>						
 			</section>
 		</div>
 		<div style="padding-top:100px;padding-bottom:150px;padding-left:200px;padding-right:200px;">
-			<table style="background-color:rgba(100%, 100%, 100%, 0.6);font-family:微軟正黑體;text-align:center;">
-				<th style="min-width:30px;height:40px;">名稱</th>
-				<th style="min-width:50px;">類別</th>
-				<th style="min-width:400px;">地址</th>
-				<th style="min-width:100px;">電話</th>
+			<table style="font-family:微軟正黑體;text-align:center;width:100%;">
+				
 			
 				<?php
+					
 					//呼叫資料庫
 					require_once 'ConnectionFactory.php';
 					try
 					{
 						$conn = connectionfactory::getfactory()->getconnection();
-						// echo "<div>".$_POST['type']."</div>";
-						// echo "<div>".$_POST['town']."</div>";
-						// echo "<div>".$_POST['arrive']."</div>";
-						// echo "<div>".$_POST['leave']."</div>";
-						// echo "<div>".$_POST['price']."</div>";
-						// echo "<div>".$_POST['Reservation']."</div>";
+						  // echo "<div>".$_POST['type']."</div>";
+						  // echo "<div>".$_POST['town']."</div>";
+						  // echo "<div>".$_POST['arrive']."</div>";
+						  // echo "<div>".$_POST['leave']."</div>";
+						  // echo "<div>".$_POST['price']."</div>";
+						  // echo "<div>".$_POST['Reservation']."</div>";
 						
 						if($_POST['price']==1)//0~2000
 						{
 							$stmt = $conn->prepare("select hotel_id, name, type, address, phone from hotel where name like '%".$_POST['type']."%' and address like'%".$_POST['town']."%' and type like '%".$_POST['Reservation']."%' and max_price < 2000");
+							$stmtInsert = $conn->prepare("insert into newLog (city, price, type, roomType, user) values('".$_POST['town']."','0~2000','".$_POST['type']."','".$_POST['Reservation']."','".$_SESSION['user']."')");
 						}
 						else if($_POST['price']==2)//2001~4000
 						{
 							$stmt = $conn->prepare("select hotel_id, name, type, address, phone from hotel where name like '%".$_POST['type']."%' and address like'%".$_POST['town']."%' and type like '%".$_POST['Reservation']."%' and max_price < 4000 and min_price < 4000  and max_price > 2000 and min_price > 2000 ");
+							$stmtInsert = $conn->prepare("insert into newLog (city, price, type, roomType, user) values('".$_POST['town']."','2001~4000','".$_POST['type']."','".$_POST['Reservation']."','".$_SESSION['user']."')");
 						}
 						else if($_POST['price']==3)//4001~6000
 						{
 							$stmt = $conn->prepare("select hotel_id, name, type, address, phone from hotel where name like '%".$_POST['type']."%' and address like'%".$_POST['town']."%' and type like '%".$_POST['Reservation']."%' and max_price < 6000 and min_price > 4000");
+							$stmtInsert = $conn->prepare("insert into newLog (city, price, type, roomType, user) values('".$_POST['town']."','4001~6000','".$_POST['type']."','".$_POST['Reservation']."','".$_SESSION['user']."')");
 						}
 						else if($_POST['price']==4)//6000up
 						{
 							$stmt = $conn->prepare("select hotel_id, name, type, address, phone from hotel where name like '%".$_POST['type']."%' and address like'%".$_POST['town']."%' and type like '%".$_POST['Reservation']."%' and max_price >6000");
+							$stmtInsert = $conn->prepare("insert into newLog (city, price, type, roomType, user) values('".$_POST['town']."','6000 up','".$_POST['type']."','".$_POST['Reservation']."','".$_SESSION['user']."')");
 						}
-						
+						if($_SESSION['user']!="")
+						{
+							$stmtInsert->execute();
+						}
 						
 						$stmt->execute();
 						
 						$result = $stmt->fetchAll(PDO::FETCH_CLASS);
-						$conn = null;						
+							
+						$count = 0;
 						foreach ($result as $value) 
 						{
-							echo "<tr style='height:40px;'>";
-							echo "<td><a href='detail.php?h_id=".$value->hotel_id."' style='color:black;'>".$value->name."</a></td>";
-							echo "<td>".$value->type."</td>";
-							echo "<td>".$value->address."</td>";
-							echo "<td>".$value->phone."</td>";
-							echo "</tr>";
-						}
+							if($count%3==0)
+								echo "<tr style='width:100%;'>";
+							echo "<td style='width:50px;'>";
+							echo "<a href='detail.php?h_id=".$value->hotel_id."'>";
+							echo "<img src='img/housedemo.jpg' style='width:200px;'/></a><div style='color:white;font-family:微軟正黑體;'>".$value->name."</div><div style='color:white;font-family:微軟正黑體;'>".$value->address."</div><div style='color:white;font-family:微軟正黑體;'>".$value->phone."</div></td>";
+							
+							if($count%3==2)
+								echo "</tr>";
+							$count++;
 						
+						
+							
+						}
+						echo "</hr>";
+						
+						$stmtActive = $conn->prepare("select * from activity where from_date >'".$_POST['arrive']."' and to_date < '".$_POST['leave']."'");
+						$stmtActive->execute();
+						$resultAct = $stmtActive->fetchAll(PDO::FETCH_CLASS);
+						$conn = null;	
+						$countAct = 0;
+						echo "<table style='margin-top:5%;'>";
+						foreach ($resultAct as $value) 
+						{
+							if($countAct%3==0)
+								echo "<tr style='width:100%;'>";
+							echo "<td style='width:50px;'>";
+							echo "<a href='activeDetail.php?a_id=".$value->id."'>";
+							echo "<img src='img/actCom.jpg' style='width:200px;'/></a><div style='color:white;font-family:微軟正黑體;'>".$value->title."</div></td>";
+							
+							if($countAct%3==2)
+								echo "</tr>";
+							$countAct++;
+						
+						
+							
+						}
+						echo "</table>";
 					}
 					catch (PDOException $e) 
 					{
